@@ -5,22 +5,19 @@ con = oracledb.connect(user="escolar", password="ClaveEscolar_123",
 cur = con.cursor()
 
 alumnos = [
-    (105, "Sofía Hernández", "Ingeniería en Sistemas"),
-    (106, "Diego Ramírez",   "Ingeniería en Sistemas"),
-    (107, "Valeria Torres",  "Ingeniería en Sistemas"),
-    (108, "Jorge Castillo",  "Ingeniería en Sistemas"),
-    (109, "Fernanda Ortiz",  "Ingeniería en Sistemas"),
-    (110, "Pablo Mendoza",   "Ingeniería en Sistemas"),
-    (111, "Camila Flores",   "Ingeniería en Sistemas"),
-    (112, "Andrés Vargas",   "Ingeniería en Sistemas"),
-    (113, "Daniela Ríos",    "Ingeniería en Sistemas"),
-    (114, "Ricardo Navarro", "Ingeniería en Sistemas"),
+    (115, "Sofía Perez", "Ingeniería en "),
+    (116, "Diego juan",   "Ingeniería en tics"),
 ]
 cur.executemany(
     "INSERT INTO ALUMNOS (ID_ALUMNO, NOMBRE, CARRERA) VALUES (:1, :2, :3)",
     alumnos
 )
 con.commit()
+
+# Verificar
+cur.execute("SELECT * FROM ALUMNOS ORDER BY ID_ALUMNO")
+for fila in cur:
+    print(fila)
 
 cur.execute("SELECT COUNT(*) FROM ALUMNOS")
 print("Total de alumnos:", cur.fetchone()[0])
